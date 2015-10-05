@@ -26,3 +26,5 @@ u::::::::::::::u  n::::n    n::::n  o:::::ooooo:::::o
 Create template for CKEditor. Very useful.
 Two default models exist : two columns and three columns. They are adjustable.
 Ability to create others sophisticated templates. As easy as the Lego game.
+
+[CMSUno](https://github.com/boiteasite/cmsuno)
