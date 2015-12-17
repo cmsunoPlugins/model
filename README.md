@@ -21,10 +21,15 @@ u::::::::::::::u  n::::n    n::::n  o:::::ooooo:::::o
      \____/           \/    \/            \__/
 </pre>
 
-### Model ###
+## Model ##
 
 Create template for CKEditor. Very useful.
 Two default models exist : two columns and three columns. They are adjustable.
 Ability to create others sophisticated templates. As easy as the Lego game.
 
 [CMSUno](https://github.com/boiteasite/cmsuno)
+
+### Versions ###
+
+* 1.0.1 - 17/12/2015 : Responsive style
+* 1.0 - 05/10/2015 : First stable version
