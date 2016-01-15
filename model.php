@@ -274,7 +274,9 @@ if (isset($_POST['action']))
 			}
 		$o .= "for(v=0;v<dyn.length;++v){ico+=dyn[v].n+',';};ico=ico.substr(0,ico.length-1);";
 		// 3. Save
-		if (file_put_contents('../../data/model.json', $out) && file_put_contents('unomodel/dynamic.js', $o)) echo _('Backup performed');
+		$q = file_get_contents('unomodel/plugin_src.js');
+		$q = str_replace('//INCLUDE//',$o,$q);
+		if (file_put_contents('../../data/model.json', $out) && file_put_contents('unomodel/plugin.js', $q)) echo _('Backup performed');
 		else echo '!'._('Impossible backup');
 		break;
 		// ********************************************************************************************

@@ -31,5 +31,6 @@ Ability to create others sophisticated templates. As easy as the Lego game.
 
 ### Versions ###
 
+* 1.1 - 15/01/2015 : Fix problem with asynchrone include : write data directly in plugin.js
 * 1.0.1 - 17/12/2015 : Responsive style
 * 1.0 - 05/10/2015 : First stable version

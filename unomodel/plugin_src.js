@@ -4,10 +4,7 @@
 //
 var ico='',dyn=[],it={};
 
-dyn=[];ico='';var alw='p a div span h2 h3 h4 h5 h6 section article iframe object embed strong b i em cite pre blockquote small sub sup code ul ol li dl dt dd table thead tbody th tr td img caption mediawrapper br[*]{*}(*)';
-dyn[0]={n:'twocol',t:'<div class="row twoCol"><div class="grid6 col1"><p>Content</p></div><div class="grid6 col2"><p>Content</p></div></div>',e:{col1:{selector:'.col1'},col2:{selector:'.col2'}},a:alw,u:'twoCol',l:'Deux colonnes'};
-dyn[1]={n:'threecol',t:'<div class="row threeCol"><div class="grid4 col1"><p>Text</p></div><div class="grid4 col2"><p>Text</p></div><div class="grid4 col3"><p>Text</p></div></div>',e:{col1:{selector:'.col1'},col2:{selector:'.col2'},col3:{selector:'.col3'}},a:alw,u:'threeCol',l:'Trois colonnes'};
-for(v=0;v<dyn.length;++v){ico+=dyn[v].n+',';};ico=ico.substr(0,ico.length-1);
+//INCLUDE//
 
 CKEDITOR.plugins.add('unomodel',{
 	requires:'widget',
