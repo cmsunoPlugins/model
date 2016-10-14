@@ -17,20 +17,20 @@ if (isset($_POST['action']))
 		?>
 		<link rel="stylesheet" type="text/css" media="screen" href="uno/plugins/model/model.css" />
 		<div class="blocForm">
-			<h2><?php echo _("Model");?></h2>
-			<p><?php echo _("This powerful plugin allows you to create layout templates for CKEditor.");?></p>
-			<p><?php echo _("It works with the drop-down button") .'<img src="uno/plugins/model/unomodel/icons/unomodel.png" style="border:1px solid #aaa;padding:3px;margin:0 6px -5px;border-radius:2px;" />' . _("added to the text editor when the plugin is enabled."); ?></p>
-			<p><?php echo _("Two models exist by default : Two columns").
+			<h2><?php echo T_("Model");?></h2>
+			<p><?php echo T_("This powerful plugin allows you to create layout templates for CKEditor.");?></p>
+			<p><?php echo T_("It works with the drop-down button") .'<img src="uno/plugins/model/unomodel/icons/unomodel.png" style="border:1px solid #aaa;padding:3px;margin:0 6px -5px;border-radius:2px;" />' . T_("added to the text editor when the plugin is enabled."); ?></p>
+			<p><?php echo T_("Two models exist by default : Two columns").
 				'<img src="uno/plugins/model/unomodel/icons/twocol.png" style="border:1px solid #aaa;padding:3px;margin:0 6px -5px;border-radius:2px;" />'.
-				_("and Three columns").
+				T_("and Three columns").
 				'<img src="uno/plugins/model/unomodel/icons/threecol.png" style="border:1px solid #aaa;padding:3px;margin:0 6px -5px;border-radius:2px;" />'.
-				_("The column width is adjustable.");?>
+				T_("The column width is adjustable.");?>
 			</p>
 			<div id="modelConf">
-				<h3><?php echo _("Size for the two models");?></h3>
+				<h3><?php echo T_("Size for the two models");?></h3>
 				<table class="hForm">
 					<tr>
-						<td><label><?php echo _("Size column");?>&nbsp;1</label></td>
+						<td><label><?php echo T_("Size column");?>&nbsp;1</label></td>
 						<td>
 							<select name="tw1" id="tw1" onChange="f_draw_model('twocol');">
 							<?php for($v=1;$v<12;++$v) echo '<option value="'.$v.'">'.$v.' / 12</option>'; ?>
@@ -46,8 +46,8 @@ if (isset($_POST['action']))
 					</tr>
 					<tr>
 						<td>
-							<label><?php echo _("Size column");?>&nbsp;1</label><br />
-							<label><?php echo _("Size column");?>&nbsp;2</label>
+							<label><?php echo T_("Size column");?>&nbsp;1</label><br />
+							<label><?php echo T_("Size column");?>&nbsp;2</label>
 						</td>
 						<td>
 							<select name="th1" id="th1" onChange="f_draw_model('threecol');">
@@ -66,12 +66,12 @@ if (isset($_POST['action']))
 						</td>
 					</tr>
 				</table>
-				<div class="bouton fr" onClick="f_save_model();" title="<?php echo _("Save");?>"><?php echo _("Save");?></div>
+				<div class="bouton fr" onClick="f_save_model();" title="<?php echo T_("Save");?>"><?php echo T_("Save");?></div>
 				<div class="clear"></div>
-				<h3><?php echo _("Create / Edit a model");?></h3>
+				<h3><?php echo T_("Create / Edit a model");?></h3>
 				<table class="hForm">
 					<tr>
-						<td><label><?php echo _("Icon");?></label></td>
+						<td><label><?php echo T_("Icon");?></label></td>
 						<td>
 							<select name="cri" id="cri" onChange="document.getElementById('cricon').src='uno/plugins/model/unomodel/icons/'+this.options[this.selectedIndex].value+'.png';">
 							<?php for($v=0;$v<10;++$v) echo '<option value="'.$v.'">'.$v.'</option>'; ?>
@@ -80,29 +80,29 @@ if (isset($_POST['action']))
 							<img src="uno/plugins/model/unomodel/icons/0.png" id="cricon" style="border:1px solid #aaa;padding:3px;margin:0 7px -7px 20px;border-radius:2px;" />
 						</td>
 						<td>
-							<em><?php echo _("Select an icon for this model.");?></em>
+							<em><?php echo T_("Select an icon for this model.");?></em>
 						</td>
 					</tr>
 					<tr>
-						<td><label><?php echo _("Name");?></label></td>
+						<td><label><?php echo T_("Name");?></label></td>
 						<td>
 							<input type="text" id="crn" name="crn"  style="width:150px;" value="" />
 						</td>
 						<td>
-							<em><?php echo _("Select a name for this model. Only alphanumeric characters");?></em>
+							<em><?php echo T_("Select a name for this model. Only alphanumeric characters");?></em>
 						</td>
 					</tr>
 					<tr>
-						<td><label><?php echo _("Block Size");?></label></td>
+						<td><label><?php echo T_("Block Size");?></label></td>
 						<td>
 							<select name="cr1" id="cr1">
-							<?php for($v=1;$v<12;++$v) echo '<option value="'.$v.'">'._("width").'&nbsp;:&nbsp;'.$v.' / 12</option>'; ?>
-							<option value="12"><?php echo _("full width"); ?></option>
+							<?php for($v=1;$v<12;++$v) echo '<option value="'.$v.'">'.T_("width").'&nbsp;:&nbsp;'.$v.' / 12</option>'; ?>
+							<option value="12"><?php echo T_("full width"); ?></option>
 							</select>
 							<br />
 							<select name="cr2" id="cr2">
-								<option value="0"><?php echo _("after the last block");?></option>
-								<option value="1" disabled><?php echo _("in the current block");?></option>
+								<option value="0"><?php echo T_("after the last block");?></option>
+								<option value="1" disabled><?php echo T_("in the current block");?></option>
 							</select>
 						</td>
 						<td rowspan="3" style="width:400px;text-align:center;">
@@ -110,17 +110,17 @@ if (isset($_POST['action']))
 						</td>
 					</tr>
 					<tr>
-						<td><label><?php echo _("Block Content");?></label></td>
+						<td><label><?php echo T_("Block Content");?></label></td>
 						<td>
 							<select name="cr3" id="cr3" onChange="f_custom_model(this);">
-								<option value="all"><?php echo _("No restriction"); ?></option>
-								<option value="h2">H2 <?php echo _("Title"); ?></option>
-								<option value="h3">H3 <?php echo _("Title"); ?></option>
-								<option value="h2c">H2 <?php echo _("Title + Content"); ?></option>
-								<option value="h3c">H3 <?php echo _("Title + Content"); ?></option>
-								<option value="img"><?php echo _("Image"); ?></option>
-								<option value="li"><?php echo _("List"); ?></option>
-								<option value="css"><?php echo _("HTML and CSS"); ?></option>
+								<option value="all"><?php echo T_("No restriction"); ?></option>
+								<option value="h2">H2 <?php echo T_("Title"); ?></option>
+								<option value="h3">H3 <?php echo T_("Title"); ?></option>
+								<option value="h2c">H2 <?php echo T_("Title + Content"); ?></option>
+								<option value="h3c">H3 <?php echo T_("Title + Content"); ?></option>
+								<option value="img"><?php echo T_("Image"); ?></option>
+								<option value="li"><?php echo T_("List"); ?></option>
+								<option value="css"><?php echo T_("HTML and CSS"); ?></option>
 							</select>
 						</td>
 					</tr>
@@ -138,15 +138,15 @@ if (isset($_POST['action']))
 					<tr>
 						<td></td>
 						<td>
-							<div class="bouton fl" onClick="f_add_model();" title="<?php echo _("Add");?>"><?php echo _("Add");?></div>
-							<div class="bouton fl" onClick="f_del_model();" title="<?php echo _("Remove");?>"><?php echo _("Remove");?></div>
+							<div class="bouton fl" onClick="f_add_model();" title="<?php echo T_("Add");?>"><?php echo T_("Add");?></div>
+							<div class="bouton fl" onClick="f_del_model();" title="<?php echo T_("Remove");?>"><?php echo T_("Remove");?></div>
 						</td>
 						<td></td>
 					</tr>
 				</table>
-				<div class="bouton fr" onClick="f_saveCR_model();" title="<?php echo _("Save");?>"><?php echo _("Save");?></div>
+				<div class="bouton fr" onClick="f_saveCR_model();" title="<?php echo T_("Save");?>"><?php echo T_("Save");?></div>
 				<div class="clear"></div>
-				<h3><?php echo _("Existing model");?></h3>
+				<h3><?php echo T_("Existing model");?></h3>
 				<div id="modelExist"></div>
 			</div>
 			<div class="clear"></div>
@@ -165,14 +165,14 @@ if (isset($_POST['action']))
 			'css'=>'alw'
 			);
 		$con = array(
-			'all'=>'<p>'._("Text").'</p>',
+			'all'=>'<p>'.T_("Text").'</p>',
 			'h2'=>'<h2>H2</h2>',
 			'h3'=>'<h3>H3</h3>',
-			'h2c'=>'<h2>H2</h2><p>'._("Text").'</p>',
-			'h3c'=>'<h3>H3</h3><p>'._("Text").'</p>',
+			'h2c'=>'<h2>H2</h2><p>'.T_("Text").'</p>',
+			'h3c'=>'<h3>H3</h3><p>'.T_("Text").'</p>',
 			'img'=>'<img src="uno/plugins/model/unomodel/icons/model.jpg" />',
-			'li'=>'<ul><li>'._("List").'</li></ul>',
-			'css'=>'<p>'._("Text").'</p>'
+			'li'=>'<ul><li>'.T_("List").'</li></ul>',
+			'css'=>'<p>'.T_("Text").'</p>'
 			);
 		// 1. model.json
 		$q = @file_get_contents('../../data/model.json');
@@ -198,7 +198,7 @@ if (isset($_POST['action']))
 			'e'=>'{col1:{selector:\'.col1\'},col2:{selector:\'.col2\'}}',
 			'a'=>'alw',
 			'u'=>'twoCol',
-			'l'=>_('Two columns')
+			'l'=>T_('Two columns')
 			);
 		$dyn[1] = array(
 			'n'=>'threecol',
@@ -206,7 +206,7 @@ if (isset($_POST['action']))
 			'e'=>'{col1:{selector:\'.col1\'},col2:{selector:\'.col2\'},col3:{selector:\'.col3\'}}',
 			'a'=>'alw',
 			'u'=>'threeCol',
-			'l'=>_('Three columns')
+			'l'=>T_('Three columns')
 			);
 		$c = 0;
 		if(isset($a['list'])) foreach($a['list'] as $kl=>$vl)
@@ -276,8 +276,8 @@ if (isset($_POST['action']))
 		// 3. Save
 		$q = file_get_contents('unomodel/plugin_src.js');
 		$q = str_replace('//INCLUDE//',$o,$q);
-		if (file_put_contents('../../data/model.json', $out) && file_put_contents('unomodel/plugin.js', $q)) echo _('Backup performed');
-		else echo '!'._('Impossible backup');
+		if (file_put_contents('../../data/model.json', $out) && file_put_contents('unomodel/plugin.js', $q)) echo T_('Backup performed');
+		else echo '!'.T_('Impossible backup');
 		break;
 		// ********************************************************************************************
 		case 'delCR':
@@ -286,7 +286,7 @@ if (isset($_POST['action']))
 		else $a = Array();
 		if(isset($a['list'][$_POST['nam']])) unset($a['list'][$_POST['nam']]);
 		$out = json_encode($a);
-		if(file_put_contents('../../data/model.json', $out)) echo _('Model removed');
+		if(file_put_contents('../../data/model.json', $out)) echo T_('Model removed');
 		break;
 		// ********************************************************************************************
 		}
