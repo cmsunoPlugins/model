@@ -31,6 +31,7 @@ Ability to create others sophisticated templates. As easy as the Lego game.
 
 ### Versions ###
 
+* 1.3 - 27/12/2017 : W3.css compatibility
 * 1.2.1 - 15/03/2017 : Fix issue when unknow lang
 * 1.2 - 14/10/2016 : Use PHP-Gettext in place of gettext
 * 1.1 - 15/01/2016 : Fix problem with asynchrone include : write data directly in plugin.js

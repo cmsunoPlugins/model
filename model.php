@@ -194,7 +194,7 @@ if (isset($_POST['action']))
 		$dyn = array();
 		$dyn[0] = array(
 			'n'=>'twocol',
-			't'=>'<div class="row twoCol"><div class="grid'.(isset($a['tw1'])?$a['tw1']:6).' col1"><p>Content</p></div><div class="grid'.(isset($a['tw1'])?intval(12-$a['tw1']):6).' col2"><p>Content</p></div></div>',
+			't'=>'<div class="w3-row row twoCol"><div class="w3-col m'.(isset($a['tw1'])?$a['tw1']:6).' grid'.(isset($a['tw1'])?$a['tw1']:6).' col1"><p>Content</p></div><div class="w3-col m'.(isset($a['tw1'])?intval(12-$a['tw1']):6).' grid'.(isset($a['tw1'])?intval(12-$a['tw1']):6).' col2"><p>Content</p></div></div>',
 			'e'=>'{col1:{selector:\'.col1\'},col2:{selector:\'.col2\'}}',
 			'a'=>'alw',
 			'u'=>'twoCol',
@@ -202,7 +202,7 @@ if (isset($_POST['action']))
 			);
 		$dyn[1] = array(
 			'n'=>'threecol',
-			't'=>'<div class="row threeCol"><div class="grid'.(isset($a['th1'])?$a['th1']:4).' col1"><p>Text</p></div><div class="grid'.(isset($a['th2'])?$a['th2']:4).' col2"><p>Text</p></div><div class="grid'.(isset($a['th1'])?intval(12-$a['th1']-$a['th2']):4).' col3"><p>Text</p></div></div>',
+			't'=>'<div class="w3-row row threeCol"><div class="w3-col m'.(isset($a['th1'])?$a['th1']:4).' grid'.(isset($a['th1'])?$a['th1']:4).' col1"><p>Text</p></div><div class="w3-col m'.(isset($a['th2'])?$a['th2']:4).' grid'.(isset($a['th2'])?$a['th2']:4).' col2"><p>Text</p></div><div class="w3-col m'.(isset($a['th1'])?intval(12-$a['th1']-$a['th2']):4).' grid'.(isset($a['th1'])?intval(12-$a['th1']-$a['th2']):4).' col3"><p>Text</p></div></div>',
 			'e'=>'{col1:{selector:\'.col1\'},col2:{selector:\'.col2\'},col3:{selector:\'.col3\'}}',
 			'a'=>'alw',
 			'u'=>'threeCol',
@@ -226,21 +226,21 @@ if (isset($_POST['action']))
 					if(substr($v1[1],0,1)=='*')
 						{
 						$v0 = explode('**',substr($v1[1],1));
-						$t .= '<div class="grid'.$v1[0].'"'.((isset($v0[1]) && $v0[1])?' style="'.$v0[1].'"':'').'>';
+						$t .= '<div class="w3-col m'.$v1[0].' grid'.$v1[0].'"'.((isset($v0[1]) && $v0[1])?' style="'.$v0[1].'"':'').'>';
 						}
-					else $t .= '<div class="grid'.$v1[0].'">';
+					else $t .= '<div class="w3-col m'.$v1[0].' grid'.$v1[0].'">';
 					}
 				else
 					{
 					if(substr($v1[1],0,1)=='*')
 						{
 						$v0 = explode('**',substr($v1[1],1));
-						$t .= '<div class="grid'.$v1[0].' col'.($k+1).'"'.((isset($v0[1]) && $v0[1])?' style="'.$v0[1].'"':'').'>'.$v0[0].'</div>';
+						$t .= '<div class="w3-col m'.$v1[0].' grid'.$v1[0].' col'.($k+1).'"'.((isset($v0[1]) && $v0[1])?' style="'.$v0[1].'"':'').'>'.$v0[0].'</div>';
 						$e .= 'col'.($k+1).':{selector:\'.col'.($k+1).'\',allowedContent:'.($alw['css']=='alw'?'alw':'\''.$alw['css'].'\'').'},';
 						}
 					else
 						{
-						$t .= '<div class="grid'.$v1[0].' col'.($k+1).'">'.$con[$v1[1]].'</div>';
+						$t .= '<div class="w3-col m'.$v1[0].' grid'.$v1[0].' col'.($k+1).'">'.$con[$v1[1]].'</div>';
 						$e .= 'col'.($k+1).':{selector:\'.col'.($k+1).'\',allowedContent:'.($alw[$v1[1]]=='alw'?'alw':'\''.$alw[$v1[1]].'\'').'},';
 						}
 					if(!isset($vl['c'][$k+1]) || ($v1[2] && !$v3[2])) $t .= '</div>'; // fermeture bloc parent
@@ -251,7 +251,7 @@ if (isset($_POST['action']))
 			$t = str_replace("'", "\\'", $t);
 			$dyn[2+$c] = array(
 				'n'=>$vl['i'],
-				't'=>'<div class="row unomodel '.$u.'">'.$t.'</div>',
+				't'=>'<div class="w3-row row unomodel '.$u.'">'.$t.'</div>',
 				'e'=>'{'.substr($e,0,-1).'}',
 				'a'=>'alw',
 				'u'=>$u,
