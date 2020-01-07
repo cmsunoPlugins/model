@@ -31,6 +31,7 @@ Ability to create others sophisticated templates. As easy as the Lego game.
 
 ### Versions ###
 
+* 1.3.1 - 07/01/2020 : Fix "HTML & CSS" box issue
 * 1.3 - 27/12/2017 : W3.css compatibility
 * 1.2.1 - 15/03/2017 : Fix issue when unknow lang
 * 1.2 - 14/10/2016 : Use PHP-Gettext in place of gettext

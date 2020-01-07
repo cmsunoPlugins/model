@@ -26,6 +26,7 @@ if (isset($_POST['action']))
 				'<img src="uno/plugins/model/unomodel/icons/threecol.png" style="border:1px solid #aaa;padding:3px;margin:0 6px -5px;border-radius:2px;" />'.
 				T_("The column width is adjustable.");?>
 			</p>
+			<p><?php echo T_("Deleting browser history is often necessary after a change in this page !");?>
 			<div id="modelConf">
 				<h3><?php echo T_("Size for the two models");?></h3>
 				<table class="hForm">
@@ -276,7 +277,7 @@ if (isset($_POST['action']))
 		// 3. Save
 		$q = file_get_contents('unomodel/plugin_src.js');
 		$q = str_replace('//INCLUDE//',$o,$q);
-		if (file_put_contents('../../data/model.json', $out) && file_put_contents('unomodel/plugin.js', $q)) echo T_('Backup performed');
+		if(file_put_contents('../../data/model.json', $out) && file_put_contents('unomodel/plugin.js', $q)) echo T_('Backup performed');
 		else echo '!'.T_('Impossible backup');
 		break;
 		// ********************************************************************************************

@@ -96,7 +96,7 @@ function f_add_model(){var cr1,cr2,cr3,a,s=document.getElementById("crView").get
 	cr1=document.getElementById("cr1").options[document.getElementById("cr1").selectedIndex].value;
 	cr2=document.getElementById("cr2").options[document.getElementById("cr2").selectedIndex].value;
 	cr3=document.getElementById("cr3").options[document.getElementById("cr3").selectedIndex].value;
-	if(cr3=='css')cr3='*'+document.getElementById("crh").value.replace(/|/g,'!i!')+'**'+document.getElementById("crs").value.replace(/|/g,'!i!');
+	if(cr3=='css')cr3='*'+document.getElementById("crh").value.replace(/\|/g,'!i!')+'**'+document.getElementById("crs").value.replace(/(<([^>]+)>)/ig,'').replace(/\|/g,'!i!');
 	a=document.createElement('div');
 	a.style.width=f_gr_model(cr1)+'%';
 	a.className='modelCol'+t.substr(t.length-1,1)+' modelBlock';

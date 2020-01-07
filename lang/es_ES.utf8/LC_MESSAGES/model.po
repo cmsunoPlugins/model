@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CmsUno\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-03-15 19:03+0100\n"
-"PO-Revision-Date: 2017-03-15 19:03+0100\n"
+"POT-Creation-Date: 2020-01-07 16:10+0100\n"
+"PO-Revision-Date: 2020-01-07 16:11+0100\n"
 "Last-Translator: malgrange <jacques.malgrange@gmail.com>\n"
 "Language-Team: Jacques Malgrange <contacter@boiteasite.fr>\n"
 "Language: es_ES\n"
@@ -46,120 +46,124 @@ msgstr "y tres columnas"
 msgid "The column width is adjustable."
 msgstr "El ancho de columna es ajustable."
 
-#: ../../../model.php:30
+#: ../../../model.php:29
+msgid "Deleting browser history is often necessary after a change in this page !"
+msgstr "¡ Eliminar el historial del navegador a menudo es necesario después de un cambio en esta página !"
+
+#: ../../../model.php:31
 msgid "Size for the two models"
 msgstr "Tamaño de los dos modelos"
 
-#: ../../../model.php:33 ../../../model.php:49 ../../../model.php:50
+#: ../../../model.php:34 ../../../model.php:50 ../../../model.php:51
 msgid "Size column"
 msgstr "columna Tamaño"
 
-#: ../../../model.php:69 ../../../model.php:147
+#: ../../../model.php:70 ../../../model.php:148
 msgid "Save"
 msgstr "Guardar"
 
-#: ../../../model.php:71
+#: ../../../model.php:72
 msgid "Create / Edit a model"
 msgstr "Crear / Editar un modelo"
 
-#: ../../../model.php:74
+#: ../../../model.php:75
 msgid "Icon"
 msgstr "Icono"
 
-#: ../../../model.php:83
+#: ../../../model.php:84
 msgid "Select an icon for this model."
 msgstr "Seleccione un icono para este modelo."
 
-#: ../../../model.php:87
+#: ../../../model.php:88
 msgid "Name"
 msgstr "Nombre"
 
-#: ../../../model.php:92
+#: ../../../model.php:93
 msgid "Select a name for this model. Only alphanumeric characters"
 msgstr "Seleccione un nombre para este modelo. Sólo caracteres alfanuméricos"
 
-#: ../../../model.php:96
+#: ../../../model.php:97
 msgid "Block Size"
 msgstr "Tamaño de la caja"
 
-#: ../../../model.php:99
+#: ../../../model.php:100
 msgid "width"
 msgstr "ancho"
 
-#: ../../../model.php:100
+#: ../../../model.php:101
 msgid "full width"
 msgstr "ancho completo"
 
-#: ../../../model.php:104
+#: ../../../model.php:105
 msgid "after the last block"
 msgstr "después de la última caja"
 
-#: ../../../model.php:105
+#: ../../../model.php:106
 msgid "in the current block"
 msgstr "en la caja actual"
 
-#: ../../../model.php:113
+#: ../../../model.php:114
 msgid "Block Content"
 msgstr "Contenido de la caja"
 
-#: ../../../model.php:116
+#: ../../../model.php:117
 msgid "No restriction"
 msgstr "Sin restricciones"
 
-#: ../../../model.php:117 ../../../model.php:118
+#: ../../../model.php:118 ../../../model.php:119
 msgid "Title"
 msgstr "Título"
 
-#: ../../../model.php:119 ../../../model.php:120
+#: ../../../model.php:120 ../../../model.php:121
 msgid "Title + Content"
 msgstr "Título + contenido"
 
-#: ../../../model.php:121
+#: ../../../model.php:122
 msgid "Image"
 msgstr "Imagen"
 
-#: ../../../model.php:122 ../../../model.php:174
+#: ../../../model.php:123 ../../../model.php:175
 msgid "List"
 msgstr "Lista"
 
-#: ../../../model.php:123
+#: ../../../model.php:124
 msgid "HTML and CSS"
 msgstr "HTML y CSS"
 
-#: ../../../model.php:141
+#: ../../../model.php:142
 msgid "Add"
 msgstr "Añadir"
 
-#: ../../../model.php:142
+#: ../../../model.php:143
 msgid "Remove"
 msgstr "Eliminar"
 
-#: ../../../model.php:149
+#: ../../../model.php:150
 msgid "Existing model"
 msgstr "Modelo existente"
 
-#: ../../../model.php:168 ../../../model.php:171 ../../../model.php:172
-#: ../../../model.php:175
+#: ../../../model.php:169 ../../../model.php:172 ../../../model.php:173
+#: ../../../model.php:176
 msgid "Text"
 msgstr "Texto"
 
-#: ../../../model.php:201
+#: ../../../model.php:202
 msgid "Two columns"
 msgstr "Dos columnas"
 
-#: ../../../model.php:209
+#: ../../../model.php:210
 msgid "Three columns"
 msgstr "Tres columnas"
 
-#: ../../../model.php:279
+#: ../../../model.php:280
 msgid "Backup performed"
 msgstr "Copia de seguridad realizada"
 
-#: ../../../model.php:280
+#: ../../../model.php:281
 msgid "Impossible backup"
 msgstr "Copia de seguridad Imposible"
 
-#: ../../../model.php:289
+#: ../../../model.php:290
 msgid "Model removed"
 msgstr "Modelo se ha eliminado"
 
