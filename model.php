@@ -40,7 +40,7 @@ if (isset($_POST['action']))
 						<td>
 							<img src="uno/plugins/model/unomodel/icons/twocol.png" style="border:1px solid #aaa;padding:3px;margin:0 6px -5px;border-radius:2px;" />
 						</td>
-						<td style="text-align:center;">
+						<td style="width:400px;text-align:center;">
 							<div id='twa' class="modelCol1 modelBlock">1</div>
 							<div id='twb' class="modelCol2 modelBlock">2</div>
 						</td>
@@ -106,7 +106,7 @@ if (isset($_POST['action']))
 								<option value="1" disabled><?php echo T_("in the current block");?></option>
 							</select>
 						</td>
-						<td rowspan="3" style="width:400px;text-align:center;">
+						<td class="modelView" rowspan="3" style="width:400px;text-align:center;">
 							<div id='crView' style="width:100%;"></div>
 						</td>
 					</tr>
