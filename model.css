@@ -15,7 +15,6 @@
 #modelExist table.list td:nth-child(3){padding-left:10px;color:#00677a;}
 #modelExist table.list td:nth-child(4){padding-left:10px;font-weight:700;font-size:120%;color:red;cursor:pointer;}
 @media screen and (max-width:780px){
-	#modelConf
 	#modelExist tr{display:block;margin-bottom:10px;}
 	#modelExist table.list td:nth-child(3){display:block;padding-left:0;width:95%;}
 	#modelConf table.hForm{max-width:100%!important;}
