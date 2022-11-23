@@ -1,16 +1,13 @@
 <?php
 session_start(); 
-if(!isset($_SERVER['HTTP_X_REQUESTED_WITH']) || strtolower($_SERVER['HTTP_X_REQUESTED_WITH'])!='xmlhttprequest') {sleep(2);exit;} // ajax request
 if(!isset($_POST['unox']) || $_POST['unox']!=$_SESSION['unox']) {sleep(2);exit;} // appel depuis uno.php
 ?>
 <?php
 include('../../config.php');
 include('lang/lang.php');
 // ********************* actions *************************************************************************
-if (isset($_POST['action']))
-	{
-	switch ($_POST['action'])
-		{
+if(isset($_POST['action'])) {
+	switch($_POST['action']) {
 		// ********************************************************************************************
 		case 'plugin': 
 		if(!file_exists('../../data/model.json')) file_put_contents('../../data/model.json', '{}')
@@ -179,17 +176,15 @@ if (isset($_POST['action']))
 		$q = @file_get_contents('../../data/model.json');
 		if($q) $a = json_decode($q,true);
 		else $a = Array();
-		if(isset($_POST['tw1']))
-			{
+		if(isset($_POST['tw1'])) {
 			$a['tw1'] = ((isset($_POST['tw1']) && $_POST['tw1'])?$_POST['tw1']:'6');
 			$a['th1'] = ((isset($_POST['th1']) && $_POST['th1'])?$_POST['th1']:'4');
 			$a['th2'] = ((isset($_POST['th2']) && $_POST['th2'])?$_POST['th2']:'4');
-			}
-		else if(isset($_POST['cr']))
-			{
-			$a['list'][$_POST['nam']]['c'] = $_POST['cr'];
+		}
+		else if(isset($_POST['cr'])) {
+			$a['list'][$_POST['nam']]['c'] = json_decode($_POST['cr']);
 			$a['list'][$_POST['nam']]['i'] = $_POST['ico'];
-			}
+		}
 		$out = json_encode($a);
 		// 2. dynamic.js
 		$dyn = array();
@@ -210,43 +205,35 @@ if (isset($_POST['action']))
 			'l'=>T_('Three columns')
 			);
 		$c = 0;
-		if(isset($a['list'])) foreach($a['list'] as $kl=>$vl)
-			{
+		if(isset($a['list'])) foreach($a['list'] as $kl=>$vl) {
 			$t = ''; $e = '';
-			foreach($vl['c'] as $k=>$v)
-				{
+			foreach($vl['c'] as $k=>$v) {
 				$v1 = explode('|',$v);
 				$v2 = 0;
-				if(isset($vl['c'][$k+1]))
-					{
+				if(isset($vl['c'][$k+1])) {
 					$v3 = explode('|',$vl['c'][$k+1]);
 					if(!$v1[2] && $v3[2]) $v2 = 1;
-					}
-				if($v2) // ouverture bloc parent
-					{
-					if(substr($v1[1],0,1)=='*')
-						{
+				}
+				if($v2) { // ouverture bloc parent
+					if(substr($v1[1],0,1)=='*') {
 						$v0 = explode('**',substr($v1[1],1));
 						$t .= '<div class="w3-col m'.$v1[0].' grid'.$v1[0].'"'.((isset($v0[1]) && $v0[1])?' style="'.$v0[1].'"':'').'>';
-						}
-					else $t .= '<div class="w3-col m'.$v1[0].' grid'.$v1[0].'">';
 					}
-				else
-					{
-					if(substr($v1[1],0,1)=='*')
-						{
+					else $t .= '<div class="w3-col m'.$v1[0].' grid'.$v1[0].'">';
+				}
+				else {
+					if(substr($v1[1],0,1)=='*') {
 						$v0 = explode('**',substr($v1[1],1));
 						$t .= '<div class="w3-col m'.$v1[0].' grid'.$v1[0].' col'.($k+1).'"'.((isset($v0[1]) && $v0[1])?' style="'.$v0[1].'"':'').'>'.$v0[0].'</div>';
 						$e .= 'col'.($k+1).':{selector:\'.col'.($k+1).'\',allowedContent:'.($alw['css']=='alw'?'alw':'\''.$alw['css'].'\'').'},';
-						}
-					else
-						{
+					}
+					else {
 						$t .= '<div class="w3-col m'.$v1[0].' grid'.$v1[0].' col'.($k+1).'">'.$con[$v1[1]].'</div>';
 						$e .= 'col'.($k+1).':{selector:\'.col'.($k+1).'\',allowedContent:'.($alw[$v1[1]]=='alw'?'alw':'\''.$alw[$v1[1]].'\'').'},';
-						}
-					if(!isset($vl['c'][$k+1]) || ($v1[2] && !$v3[2])) $t .= '</div>'; // fermeture bloc parent
 					}
+					if(!isset($vl['c'][$k+1]) || ($v1[2] && !$v3[2])) $t .= '</div>'; // fermeture bloc parent
 				}
+			}
 			$u = preg_replace("/[^a-zA-Z0-9]+/", "", $kl);
 			$t = str_replace("!i!", "|", $t);
 			$t = str_replace("'", "\\'", $t);
@@ -259,11 +246,10 @@ if (isset($_POST['action']))
 				'l'=>$kl
 				);
 			++$c;
-			}
+		}
 		$o = "dyn=[];ico='';";
 		$o .= "var alw='p a div span h2 h3 h4 h5 h6 section article iframe object embed strong b i em cite pre blockquote small sub sup code ul ol li dl dt dd table thead tbody th tr td img caption mediawrapper br[*]{*}(*)';\r\n";
-		for($v=0;$v<count($dyn);++$v)
-			{
+		for($v=0;$v<count($dyn);++$v) {
 			$o .= "dyn[".$v."]={";
 			$o .= "n:'".$dyn[$v]['n']."',";
 			$o .= "t:'".$dyn[$v]['t']."',";
@@ -272,7 +258,7 @@ if (isset($_POST['action']))
 			$o .= "u:'".$dyn[$v]['u']."',";
 			$o .= "l:'".$dyn[$v]['l']."'";
 			$o .= "};\r\n";
-			}
+		}
 		$o .= "for(v=0;v<dyn.length;++v){ico+=dyn[v].n+',';};ico=ico.substr(0,ico.length-1);";
 		// 3. Save
 		$q = file_get_contents('unomodel/plugin_src.js');
@@ -290,8 +276,8 @@ if (isset($_POST['action']))
 		if(file_put_contents('../../data/model.json', $out)) echo T_('Model removed');
 		break;
 		// ********************************************************************************************
-		}
+	}
 	clearstatcache();
 	exit;
-	}
+}
 ?>

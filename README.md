@@ -31,6 +31,7 @@ Ability to create others sophisticated templates. As easy as the Lego game.
 
 ### Versions ###
 
+* 1.4 - 23/11/2022 : Free jQuery - ES6
 * 1.3.2 - 27/09/2022 : Responsive display
 * 1.3.1 - 07/01/2020 : Fix "HTML & CSS" box issue
 * 1.3 - 27/12/2017 : W3.css compatibility

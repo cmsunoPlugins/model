@@ -3,56 +3,67 @@
 // Plugin Model
 //
 var modelL=[];
-function f_load_model(){var o='<table class="list">',n=0,a='';
+function f_load_model(){
+	var o='<table class="list">',n=0,a='';
 	document.getElementById("cr2").options[1].disabled=true;
-	jQuery(document).ready(function(){
-		jQuery.getJSON("uno/data/model.json?r="+Math.random(),function(data){
-			if(data.tw1){
-				t=document.getElementById("tw1");
-				to=t.options;
-				for(v=0;v<to.length;v++){if(to[v].value==data.tw1){to[v].selected=true;v=to.length;}}
-			}else document.getElementById("tw1").options[5].selected=true;
-			if(data.th1){
-				t=document.getElementById("th1");
-				to=t.options;
-				for(v=0;v<to.length;v++){if(to[v].value==data.th1){to[v].selected=true;v=to.length;}}
-			}else document.getElementById("th1").options[3].selected=true;
-			if(data.th2){
-				t=document.getElementById("th2");
-				to=t.options;
-				for(v=0;v<to.length;v++){if(to[v].value==data.th2){to[v].selected=true;v=to.length;}}
-			}else document.getElementById("th2").options[3].selected=true;
-			f_draw_model('twocol');f_draw_model('threecol');
-			if(data.list){
-				jQuery.each(data.list,function(k,v){
-					modelL[n]=[];modelL[n]['c']=v.c;modelL[n]['i']=v.i;modelL[n]['n']=k;
-					o+='<tr><td><input type="radio" name="modelRadio" value="'+k+'" '+(n==0?'checked':'')+' onClick="f_drawCR_model('+n+')">&nbsp;</td>';
-					o+='<td>'+k+'<img src="uno/plugins/model/unomodel/icons/'+v.i+'.png" id="cricon" style="border:1px solid #aaa;padding:3px;margin:0 7px -7px 20px;border-radius:2px;" /></td>';
-					o+='<td>';
-					for(w=0;w<v.c.length;++w){
-						a=v.c[w].split('|');
-						a[1]=a[1].replace(/!i!/g,'|');
-						o+=(w!=0?'-':'')+'&nbsp;'+a[0]+'/12&nbsp;('+a[1].replace(/</g,'&lt;')+')'+(a[2]==1?'(in)':'')+'&nbsp;';
-					}
-					o+='</td>';
-					o+='<td onClick="f_delCR_model(\''+k+'\')">X</td></tr>';
-					++n;
-				});
-				f_drawCR_model(0);
-				document.getElementById("modelExist").innerHTML=o+'</table>';
-				document.getElementById("cr2").options[1].disabled=false;
-			}
-			else document.getElementById("crView").innerHTML="";
-		});
+	fetch("uno/data/model.json?r="+Math.random())
+	.then(r=>r.json())
+	.then(function(data){
+		if(data.tw1){
+			t=document.getElementById("tw1");
+			to=t.options;
+			for(v=0;v<to.length;v++){if(to[v].value==data.tw1){to[v].selected=true;v=to.length;}}
+		}else document.getElementById("tw1").options[5].selected=true;
+		if(data.th1){
+			t=document.getElementById("th1");
+			to=t.options;
+			for(v=0;v<to.length;v++){if(to[v].value==data.th1){to[v].selected=true;v=to.length;}}
+		}else document.getElementById("th1").options[3].selected=true;
+		if(data.th2){
+			t=document.getElementById("th2");
+			to=t.options;
+			for(v=0;v<to.length;v++){if(to[v].value==data.th2){to[v].selected=true;v=to.length;}}
+		}else document.getElementById("th2").options[3].selected=true;
+		f_draw_model('twocol');f_draw_model('threecol');
+		if(data.list){
+			for(k in data.list)if(data.list.hasOwnProperty(k))(function(k){
+				let v=data.list[k];
+				modelL[n]=[];modelL[n]['c']=v.c;modelL[n]['i']=v.i;modelL[n]['n']=k;
+				o+='<tr><td><input type="radio" name="modelRadio" value="'+k+'" '+(n==0?'checked':'')+' onClick="f_drawCR_model('+n+')">&nbsp;</td>';
+				o+='<td>'+k+'<img src="uno/plugins/model/unomodel/icons/'+v.i+'.png" id="cricon" style="border:1px solid #aaa;padding:3px;margin:0 7px -7px 20px;border-radius:2px;" /></td>';
+				o+='<td>';
+				for(w=0;w<v.c.length;++w){
+					a=v.c[w].split('|');
+					a[1]=a[1].replace(/!i!/g,'|');
+					o+=(w!=0?'-':'')+'&nbsp;'+a[0]+'/12&nbsp;('+a[1].replace(/</g,'&lt;')+')'+(a[2]==1?'(in)':'')+'&nbsp;';
+				}
+				o+='</td>';
+				o+='<td onClick="f_delCR_model(\''+k+'\')">X</td></tr>';
+				++n;
+			})(k);
+			f_drawCR_model(0);
+			document.getElementById("modelExist").innerHTML=o+'</table>';
+			document.getElementById("cr2").options[1].disabled=false;
+		}
+		else document.getElementById("crView").innerHTML="";
 	});
 }
 function f_save_model(){
-	var tw1=document.getElementById("tw1").options[document.getElementById("tw1").selectedIndex].value;
-	var th1=document.getElementById("th1").options[document.getElementById("th1").selectedIndex].value;
-	var th2=Math.min(document.getElementById("th2").options[document.getElementById("th2").selectedIndex].value,(11-th1));
-	jQuery.post('uno/plugins/model/model.php',{'action':'save','unox':Unox,'tw1':tw1,'th1':th1,'th2':th2},function(r){f_alert(r);});
+	let tw1=document.getElementById("tw1").options[document.getElementById("tw1").selectedIndex].value;
+	let th1=document.getElementById("th1").options[document.getElementById("th1").selectedIndex].value;
+	let th2=Math.min(document.getElementById("th2").options[document.getElementById("th2").selectedIndex].value,(11-th1));
+	let x=new FormData();
+	x.set('action','save');
+	x.set('unox',Unox);
+	x.set('tw1',tw1);
+	x.set('th1',th1);
+	x.set('th2',th2);
+	fetch('uno/plugins/model/model.php',{method:'post',body:x})
+	.then(r=>r.text())
+	.then(r=>f_alert(r));
 }
-function f_draw_model(f){var a,b;
+function f_draw_model(f){
+	var a,b;
 	if(f=='twocol'){
 		a=document.getElementById("tw1").options[document.getElementById("tw1").selectedIndex].value;
 		if(a){
@@ -70,7 +81,8 @@ function f_draw_model(f){var a,b;
 		}
 	}
 }
-function f_drawCR_model(f){var a,b,v,w,s=document.getElementById("crView").getElementsByTagName('DIV'),u=-1;
+function f_drawCR_model(f){
+	var a,b,v,w,s=document.getElementById("crView").getElementsByTagName('DIV'),u=-1;
 	document.getElementById("crView").innerHTML="";
 	for(w=0;w<modelL[f]['c'].length;++w){
 		b=modelL[f]['c'][w].split('|');
@@ -92,7 +104,8 @@ function f_drawCR_model(f){var a,b,v,w,s=document.getElementById("crView").getEl
 	for(w=0;w<to.length;++w){if(to[w].value==modelL[f]['i']){to[w].selected=true;w=to.length;}}
 	document.getElementById("crn").value=modelL[f]['n'];
 }
-function f_add_model(){var cr1,cr2,cr3,a,s=document.getElementById("crView").getElementsByTagName('DIV'),t=s.length+1+'',u=-1;
+function f_add_model(){
+	var cr1,cr2,cr3,a,s=document.getElementById("crView").getElementsByTagName('DIV'),t=s.length+1+'',u=-1;
 	cr1=document.getElementById("cr1").options[document.getElementById("cr1").selectedIndex].value;
 	cr2=document.getElementById("cr2").options[document.getElementById("cr2").selectedIndex].value;
 	cr3=document.getElementById("cr3").options[document.getElementById("cr3").selectedIndex].value;
@@ -118,18 +131,51 @@ function f_del_model(){
 	}
 	if(!s.length)document.getElementById("cr2").options[1].disabled=true;
 }
-function f_delCR_model(f){jQuery.post('uno/plugins/model/model.php',{'action':'delCR','unox':Unox,'nam':f},function(r){f_alert(r);f_load_model();});}
-function f_saveCR_model(){var cr=[],s=document.getElementById("crView").getElementsByTagName('DIV'),v,ico;
+function f_delCR_model(f){
+	let x=new FormData();
+	x.set('action','delCR');
+	x.set('unox',Unox);
+	x.set('nam',f);
+	fetch('uno/plugins/model/model.php',{method:'post',body:x})
+	.then(r=>r.text())
+	.then(function(r){
+		f_alert(r);
+		f_load_model();
+	});
+}
+function f_saveCR_model(){
+	let cr=[],s=document.getElementById("crView").getElementsByTagName('DIV'),v,ico;
 	ico=document.getElementById("cri").options[document.getElementById("cri").selectedIndex].value;
 	nam=document.getElementById("crn").value;
 	for(v=0;v<s.length;++v){
 		cr[v]=s[v].title; // grid
 	}
-	if(nam.length&&s.length)jQuery.post('uno/plugins/model/model.php',{'action':'save','unox':Unox,'cr':cr,'ico':ico,'nam':nam},function(r){f_alert(r);f_load_model();});
+	if(nam.length&&s.length){
+		let x=new FormData();
+		x.set('action','save');
+		x.set('unox',Unox);
+		x.set('cr',JSON.stringify(cr));
+		x.set('ico',ico);
+		x.set('nam',nam);
+		fetch('uno/plugins/model/model.php',{method:'post',body:x})
+		.then(r=>r.text())
+		.then(function(r){
+			f_alert(r);
+			f_load_model();
+		});
+	}
 }
 function f_custom_model(f){
-	if(f.options[f.selectedIndex].value=='css'){jQuery('#crhtm').show();jQuery('#crcss').show();}
-	else{jQuery('#crhtm').hide();jQuery('#crcss').hide();document.getElementById('crh').value='<p>Text</p>';document.getElementById('crs').value='';}
+	if(f.options[f.selectedIndex].value=='css'){
+		document.getElementById('crhtm').style.display=='table-row';
+		document.getElementById('crcss').style.display=='table-row';
+	}
+	else{
+		document.getElementById('crhtm').style.display=='none';
+		document.getElementById('crcss').style.display=='none';
+		document.getElementById('crh').value='<p>Text</p>';
+		document.getElementById('crs').value='';
+	}
 }
 function f_gr_model(f){var gr=[];gr[0]=0;gr[1]=8.33333333;gr[2]=16.66666667;gr[3]=25;gr[4]=33.33333333;gr[5]=41.66666667;gr[6]=50;gr[7]=58.33333333;gr[8]=66.66666667;gr[9]=75;gr[10]=83.33333333;gr[11]=91.66666667;gr[12]=100;return gr[f];}
 //
