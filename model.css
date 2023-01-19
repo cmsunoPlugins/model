@@ -8,10 +8,22 @@
 .modelCol7{background-color:#66b;}
 .modelCol8{background-color:#b60;}
 .modelCol9{background-color:#6b0;}
-.modelCol0{background-color:#6bb;}
+.modelColt0{color:#6bb;}
+.modelColt1{color:#b66;}
+.modelColt2{color:#0b6;}
+.modelColt3{color:#06b;}
+.modelColt4{color:#b06;}
+.modelColt5{color:#bb6;}
+.modelColt6{color:#60b;}
+.modelColt7{color:#66b;}
+.modelColt8{color:#b60;}
+.modelColt9{color:#6b0;}
+.modelColt0{color:#6bb;}
 .modelBlock{text-align:center;font-size:.9em;font-weight:700;padding-top:5px;color:#000;min-height:35px;}
-#modelExist table.hForm td,.hForm td:nth-child(2){vertical-align:middle;padding:8px 5px;line-height:2em;}
+.hForm td{vertical-align:middle;}
+#modelExist table.hForm td,.hForm td:nth-child(2){padding:8px 5px;line-height:2em;}
 #modelExist table.list td{vertical-align:middle;padding:2px;word-break:break-word;}
+#modelExist table.list td:nth-child(2){text-align:center;}
 #modelExist table.list td:nth-child(3){padding-left:10px;color:#00677a;}
 #modelExist table.list td:nth-child(4){padding-left:10px;font-weight:700;font-size:120%;color:red;cursor:pointer;}
 @media screen and (max-width:780px){

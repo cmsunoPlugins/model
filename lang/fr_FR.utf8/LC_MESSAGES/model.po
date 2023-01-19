@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: CmsUno\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-01-07 16:09+0100\n"
-"PO-Revision-Date: 2020-01-07 16:10+0100\n"
+"POT-Creation-Date: 2023-01-19 19:08+0100\n"
+"PO-Revision-Date: 2023-01-19 19:09+0100\n"
 "Last-Translator: malgrange <jacques.malgrange@gmail.com>\n"
 "Language-Team: Jacques Malgrange <contacter@boiteasite.fr>\n"
 "Language: fr_FR\n"
@@ -18,160 +18,184 @@ msgstr ""
 "X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-SearchPath-0: ../../..\n"
 
-#: ../../../model.php:20
+#: ../../../model.php:17 ../../../model.php:98
+msgid "Responsive on small screen (default)"
+msgstr "Responsive sur petit écran (par défaut)"
+
+#: ../../../model.php:18 ../../../model.php:99
+msgid "Responsive on small and medium screen"
+msgstr "Responsive sur petit et moyen écran"
+
+#: ../../../model.php:19 ../../../model.php:100
+msgid "Not responsive"
+msgstr "Non responsive"
+
+#: ../../../model.php:22
 msgid "Model"
 msgstr "Modèle"
 
-#: ../../../model.php:21
-msgid "This powerful plugin allows you to create layout templates for CKEditor."
-msgstr "Ce puissant plugin permet de créer des modèles de mise en page pour CKEditor."
+#: ../../../model.php:23
+msgid ""
+"This powerful plugin allows you to create layout templates for CKEditor."
+msgstr ""
+"Ce puissant plugin permet de créer des modèles de mise en page pour CKEditor."
 
-#: ../../../model.php:22
+#: ../../../model.php:24
 msgid "It works with the drop-down button"
 msgstr "Il fonctionne avec le bouton"
 
-#: ../../../model.php:22
+#: ../../../model.php:24
 msgid "added to the text editor when the plugin is enabled."
 msgstr "ajouté à l'éditeur lorsque le plugin est actif."
 
-#: ../../../model.php:23
+#: ../../../model.php:25
 msgid "Two models exist by default : Two columns"
 msgstr "Deux modèles existent par défaut : Deux colonnes"
 
-#: ../../../model.php:25
+#: ../../../model.php:27
 msgid "and Three columns"
 msgstr "et Trois colonnes"
 
-#: ../../../model.php:27
+#: ../../../model.php:29
 msgid "The column width is adjustable."
 msgstr "La largeur des colonnes est ajustable ci-dessous."
 
-#: ../../../model.php:29
-msgid "Deleting browser history is often necessary after a change in this page !"
-msgstr "La suppression de l'historique du navigateur est souvent nécessaire après un changement dans cette page !"
-
 #: ../../../model.php:31
+msgid ""
+"Deleting browser history is often necessary after a change in this page !"
+msgstr ""
+"La suppression de l'historique du navigateur est souvent nécessaire après un "
+"changement dans cette page !"
+
+#: ../../../model.php:33
 msgid "Size for the two models"
 msgstr "Largeur pour les deux modèles"
 
-#: ../../../model.php:34 ../../../model.php:50 ../../../model.php:51
+#: ../../../model.php:36 ../../../model.php:52 ../../../model.php:53
 msgid "Size column"
 msgstr "Largeur colonne"
 
-#: ../../../model.php:70 ../../../model.php:148
+#: ../../../model.php:72 ../../../model.php:166
 msgid "Save"
 msgstr "Sauvegarde"
 
-#: ../../../model.php:72
+#: ../../../model.php:74
 msgid "Create / Edit a model"
 msgstr "Créer / Editer un modèle"
 
-#: ../../../model.php:75
+#: ../../../model.php:77
+msgid "New model"
+msgstr "Nouveau modèle"
+
+#: ../../../model.php:82
 msgid "Icon"
 msgstr "Icone"
 
-#: ../../../model.php:84
+#: ../../../model.php:91
 msgid "Select an icon for this model."
 msgstr "Choisir une icone pour ce modèle"
 
-#: ../../../model.php:88
+#: ../../../model.php:95
+msgid "Responsive"
+msgstr "Responsive"
+
+#: ../../../model.php:103
+msgid ""
+"A responsive template will change its appearance to a more vertical "
+"presentation."
+msgstr ""
+"Un modèle responsive changera son apparence pour une présentation plus "
+"verticale."
+
+#: ../../../model.php:106
 msgid "Name"
 msgstr "Nom"
 
-#: ../../../model.php:93
+#: ../../../model.php:111
 msgid "Select a name for this model. Only alphanumeric characters"
 msgstr "Choisir un nom pour ce modèle. Uniquement alphanumérique."
 
-#: ../../../model.php:97
+#: ../../../model.php:115
 msgid "Block Size"
 msgstr "Taille du bloc"
 
-#: ../../../model.php:100
+#: ../../../model.php:118
 msgid "width"
 msgstr "largeur"
 
-#: ../../../model.php:101
+#: ../../../model.php:119
 msgid "full width"
 msgstr "pleine largeur"
 
-#: ../../../model.php:105
+#: ../../../model.php:123
 msgid "after the last block"
 msgstr "après le dernier bloc"
 
-#: ../../../model.php:106
+#: ../../../model.php:124
 msgid "in the current block"
 msgstr "dans le bloc actuel"
 
-#: ../../../model.php:114
+#: ../../../model.php:132
 msgid "Block Content"
 msgstr "Contenu du bloc"
 
-#: ../../../model.php:117
+#: ../../../model.php:135
 msgid "No restriction"
 msgstr "Pas de restriction"
 
-#: ../../../model.php:118 ../../../model.php:119
+#: ../../../model.php:136 ../../../model.php:137
 msgid "Title"
 msgstr "Titre"
 
-#: ../../../model.php:120 ../../../model.php:121
+#: ../../../model.php:138 ../../../model.php:139
 msgid "Title + Content"
 msgstr "Titre + Contenu"
 
-#: ../../../model.php:122
+#: ../../../model.php:140
 msgid "Image"
 msgstr "Image"
 
-#: ../../../model.php:123 ../../../model.php:175
+#: ../../../model.php:141 ../../../model.php:193
 msgid "List"
 msgstr "Liste"
 
-#: ../../../model.php:124
+#: ../../../model.php:142
 msgid "HTML and CSS"
 msgstr "HTML et CSS"
 
-#: ../../../model.php:142
+#: ../../../model.php:160
 msgid "Add"
 msgstr "Ajoute"
 
-#: ../../../model.php:143
+#: ../../../model.php:161
 msgid "Remove"
 msgstr "Supprime"
 
-#: ../../../model.php:150
+#: ../../../model.php:168
 msgid "Existing model"
 msgstr "Modèle existant"
 
-#: ../../../model.php:169 ../../../model.php:172 ../../../model.php:173
-#: ../../../model.php:176
+#: ../../../model.php:187 ../../../model.php:190 ../../../model.php:191
+#: ../../../model.php:194
 msgid "Text"
 msgstr "Texte"
 
-#: ../../../model.php:202
+#: ../../../model.php:219 ../../../modelMake.php:29
 msgid "Two columns"
 msgstr "Deux colonnes"
 
-#: ../../../model.php:210
+#: ../../../model.php:227 ../../../modelMake.php:37
 msgid "Three columns"
 msgstr "Trois colonnes"
 
-#: ../../../model.php:280
+#: ../../../model.php:289
 msgid "Backup performed"
 msgstr "Sauvegarde effectuée"
 
-#: ../../../model.php:281
+#: ../../../model.php:290
 msgid "Impossible backup"
 msgstr "Sauvegarde impossible"
 
-#: ../../../model.php:290
+#: ../../../model.php:299
 msgid "Model removed"
 msgstr "Modèle supprimé"
-
-#~ msgid "Text with CSS"
-#~ msgstr "Texte avec CSS"
-
-#~ msgid "Add CSS"
-#~ msgstr "Ajouter du CSS"
-
-#~ msgid "Size column 2"
-#~ msgstr "Largeur colonne 2"

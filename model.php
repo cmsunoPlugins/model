@@ -1,5 +1,5 @@
 <?php
-session_start(); 
+session_start();
 if(!isset($_POST['unox']) || $_POST['unox']!=$_SESSION['unox']) {sleep(2);exit;} // appel depuis uno.php
 ?>
 <?php
@@ -13,6 +13,11 @@ if(isset($_POST['action'])) {
 		if(!file_exists('../../data/model.json')) file_put_contents('../../data/model.json', '{}')
 		?>
 		<link rel="stylesheet" type="text/css" media="screen" href="uno/plugins/model/model.css" />
+		<style>
+		.modelResp0::after{content:'<?php echo T_("Responsive on small screen (default)");?>'}
+		.modelResp1::after{content:'<?php echo T_("Responsive on small and medium screen");?>'}
+		.modelResp2::after{content:'<?php echo T_("Not responsive");?>'}
+		</style>
 		<div class="blocForm">
 			<h2><?php echo T_("Model");?></h2>
 			<p><?php echo T_("This powerful plugin allows you to create layout templates for CKEditor.");?></p>
@@ -68,6 +73,11 @@ if(isset($_POST['action'])) {
 				<div class="clear"></div>
 				<h3><?php echo T_("Create / Edit a model");?></h3>
 				<table class="hForm">
+					<tr id="newModel">
+						<td><div class="bouton" onClick="f_drawCR_model(-1)" title="<?php echo T_("New model");?>"><?php echo T_("New model");?></div></td>
+						<td></td>
+						<td></td>
+					</tr>
 					<tr>
 						<td><label><?php echo T_("Icon");?></label></td>
 						<td>
@@ -80,6 +90,17 @@ if(isset($_POST['action'])) {
 						<td>
 							<em><?php echo T_("Select an icon for this model.");?></em>
 						</td>
+					</tr>
+					<tr>
+						<td><label><?php echo T_("Responsive");?></label></td>
+						<td>
+							<select name="crr" id="crr">
+								<option value="0"><?php echo T_("Responsive on small screen (default)");?></option>
+								<option value="1"><?php echo T_("Responsive on small and medium screen");?></option>
+								<option value="2"><?php echo T_("Not responsive");?></option>
+							</select>
+						</td>
+						<td><em><?php echo T_("A responsive template will change its appearance to a more vertical presentation.");?></em></td>
 					</tr>
 					<tr>
 						<td><label><?php echo T_("Name");?></label></td>
@@ -183,7 +204,8 @@ if(isset($_POST['action'])) {
 		}
 		else if(isset($_POST['cr'])) {
 			$a['list'][$_POST['nam']]['c'] = json_decode($_POST['cr']);
-			$a['list'][$_POST['nam']]['i'] = $_POST['ico'];
+			$a['list'][$_POST['nam']]['i'] = strip_tags($_POST['ico']);
+			$a['list'][$_POST['nam']]['r'] = intval($_POST['res']);
 		}
 		$out = json_encode($a);
 		// 2. dynamic.js
@@ -207,6 +229,7 @@ if(isset($_POST['action'])) {
 		$c = 0;
 		if(isset($a['list'])) foreach($a['list'] as $kl=>$vl) {
 			$t = ''; $e = '';
+			$re = (!empty($vl['r'])?(intval($vl['r'])===1?'l':'s'):'m'); // w3.css - 0: (m => 600px) - 1: (l => 993px) - 2: (s => not responsive)
 			foreach($vl['c'] as $k=>$v) {
 				$v1 = explode('|',$v);
 				$v2 = 0;
@@ -217,18 +240,18 @@ if(isset($_POST['action'])) {
 				if($v2) { // ouverture bloc parent
 					if(substr($v1[1],0,1)=='*') {
 						$v0 = explode('**',substr($v1[1],1));
-						$t .= '<div class="w3-col m'.$v1[0].' grid'.$v1[0].'"'.((isset($v0[1]) && $v0[1])?' style="'.$v0[1].'"':'').'>';
+						$t .= '<div class="w3-col '.$re.$v1[0].' grid'.$v1[0].'"'.((isset($v0[1]) && $v0[1])?' style="'.$v0[1].'"':'').'>';
 					}
-					else $t .= '<div class="w3-col m'.$v1[0].' grid'.$v1[0].'">';
+					else $t .= '<div class="w3-col '.$re.$v1[0].' grid'.$v1[0].'">';
 				}
 				else {
 					if(substr($v1[1],0,1)=='*') {
 						$v0 = explode('**',substr($v1[1],1));
-						$t .= '<div class="w3-col m'.$v1[0].' grid'.$v1[0].' col'.($k+1).'"'.((isset($v0[1]) && $v0[1])?' style="'.$v0[1].'"':'').'>'.$v0[0].'</div>';
+						$t .= '<div class="w3-col '.$re.$v1[0].' grid'.$v1[0].' col'.($k+1).'"'.((isset($v0[1]) && $v0[1])?' style="'.$v0[1].'"':'').'>'.$v0[0].'</div>';
 						$e .= 'col'.($k+1).':{selector:\'.col'.($k+1).'\',allowedContent:'.($alw['css']=='alw'?'alw':'\''.$alw['css'].'\'').'},';
 					}
 					else {
-						$t .= '<div class="w3-col m'.$v1[0].' grid'.$v1[0].' col'.($k+1).'">'.$con[$v1[1]].'</div>';
+						$t .= '<div class="w3-col '.$re.$v1[0].' grid'.$v1[0].' col'.($k+1).'">'.$con[$v1[1]].'</div>';
 						$e .= 'col'.($k+1).':{selector:\'.col'.($k+1).'\',allowedContent:'.($alw[$v1[1]]=='alw'?'alw':'\''.$alw[$v1[1]].'\'').'},';
 					}
 					if(!isset($vl['c'][$k+1]) || ($v1[2] && !$v3[2])) $t .= '</div>'; // fermeture bloc parent
@@ -262,7 +285,7 @@ if(isset($_POST['action'])) {
 		$o .= "for(v=0;v<dyn.length;++v){ico+=dyn[v].n+',';};ico=ico.substr(0,ico.length-1);";
 		// 3. Save
 		$q = file_get_contents('unomodel/plugin_src.js');
-		$q = str_replace('//INCLUDE//',$o,$q);
+		$q = str_replace('//INCLUDE//', $o, $q);
 		if(file_put_contents('../../data/model.json', $out) && file_put_contents('unomodel/plugin.js', $q)) echo T_('Backup performed');
 		else echo '!'.T_('Impossible backup');
 		break;

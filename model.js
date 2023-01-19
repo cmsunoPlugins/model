@@ -6,42 +6,35 @@ var modelL=[];
 function f_load_model(){
 	var o='<table class="list">',n=0,a='';
 	document.getElementById("cr2").options[1].disabled=true;
+	document.getElementById("newModel").style.display='none';
 	fetch("uno/data/model.json?r="+Math.random())
 	.then(r=>r.json())
 	.then(function(data){
-		if(data.tw1){
-			t=document.getElementById("tw1");
-			to=t.options;
-			for(v=0;v<to.length;v++){if(to[v].value==data.tw1){to[v].selected=true;v=to.length;}}
-		}else document.getElementById("tw1").options[5].selected=true;
-		if(data.th1){
-			t=document.getElementById("th1");
-			to=t.options;
-			for(v=0;v<to.length;v++){if(to[v].value==data.th1){to[v].selected=true;v=to.length;}}
-		}else document.getElementById("th1").options[3].selected=true;
-		if(data.th2){
-			t=document.getElementById("th2");
-			to=t.options;
-			for(v=0;v<to.length;v++){if(to[v].value==data.th2){to[v].selected=true;v=to.length;}}
-		}else document.getElementById("th2").options[3].selected=true;
+		if(data.tw1)document.getElementById("tw1").value=data.tw1;
+		else document.getElementById("tw1").options[5].selected=true;
+		if(data.th1)document.getElementById("th1").value=data.th1;
+		else document.getElementById("th1").options[3].selected=true;
+		if(data.th2)document.getElementById("th2").value=data.th2;
+		else document.getElementById("th2").options[3].selected=true;
 		f_draw_model('twocol');f_draw_model('threecol');
 		if(data.list){
 			for(k in data.list)if(data.list.hasOwnProperty(k))(function(k){
-				let v=data.list[k];
-				modelL[n]=[];modelL[n]['c']=v.c;modelL[n]['i']=v.i;modelL[n]['n']=k;
-				o+='<tr><td><input type="radio" name="modelRadio" value="'+k+'" '+(n==0?'checked':'')+' onClick="f_drawCR_model('+n+')">&nbsp;</td>';
-				o+='<td>'+k+'<img src="uno/plugins/model/unomodel/icons/'+v.i+'.png" id="cricon" style="border:1px solid #aaa;padding:3px;margin:0 7px -7px 20px;border-radius:2px;" /></td>';
-				o+='<td>';
+				let v=data.list[k],w,t;
+				modelL[n]=[];modelL[n]['c']=v.c;modelL[n]['i']=v.i;modelL[n]['r']=v.r;modelL[n]['n']=k;
+				o+='<tr><td><input type="radio" name="modelRadio" value="'+k+'" onClick="f_drawCR_model('+n+')">&nbsp;</td>';
+				o+='<td>'+k+'<br><img src="uno/plugins/model/unomodel/icons/'+v.i+'.png" id="cricon" style="border:1px solid #aaa;padding:3px;margin:0 7px -7px 20px;border-radius:2px;" /></td>';
+				o+='<td><div style="color:#333">';
+				o+='<i class="modelResp'+((typeof v.r!=='undefined')?v.r:0)+'"></i></div>';
 				for(w=0;w<v.c.length;++w){
 					a=v.c[w].split('|');
 					a[1]=a[1].replace(/!i!/g,'|');
-					o+=(w!=0?'-':'')+'&nbsp;'+a[0]+'/12&nbsp;('+a[1].replace(/</g,'&lt;')+')'+(a[2]==1?'(in)':'')+'&nbsp;';
+					t=(w+1)+'';
+					o+='<span class="modelColt'+t.substr(-1,1)+'">'+(w!=0?'-':'')+'&nbsp;'+a[0]+'/12&nbsp;('+a[1].replace(/</g,'&lt;')+')'+(a[2]==1?'(in)':'')+'</span>&nbsp;';
 				}
 				o+='</td>';
 				o+='<td onClick="f_delCR_model(\''+k+'\')">X</td></tr>';
 				++n;
 			})(k);
-			f_drawCR_model(0);
 			document.getElementById("modelExist").innerHTML=o+'</table>';
 			document.getElementById("cr2").options[1].disabled=false;
 		}
@@ -84,6 +77,16 @@ function f_draw_model(f){
 function f_drawCR_model(f){
 	var a,b,v,w,s=document.getElementById("crView").getElementsByTagName('DIV'),u=-1;
 	document.getElementById("crView").innerHTML="";
+	if(f==-1){
+		let q=document.querySelectorAll("#modelExist input[type='radio']"),i;
+		for(i=0;i<q.length;++i)q[i].checked=false;
+		document.getElementById("crn").value='';
+		document.getElementById("cri").value=0;
+		document.getElementById("crr").value=0;
+		document.getElementById("cricon").src='uno/plugins/model/unomodel/icons/0.png';
+		return;
+	}
+	document.getElementById("newModel").style.display='table-row';
 	for(w=0;w<modelL[f]['c'].length;++w){
 		b=modelL[f]['c'][w].split('|');
 		a=document.createElement('div');
@@ -98,11 +101,10 @@ function f_drawCR_model(f){
 			for(v=0;v<s[u].childNodes.length;++v)if(s[u].childNodes[v].nodeType===3)s[u].removeChild(s[u].childNodes[v]);
 		}
 	}
-	document.getElementById("cricon").src='uno/plugins/model/unomodel/icons/'+modelL[f]['i']+'.png';
-	t=document.getElementById("cri");
-	to=t.options;
-	for(w=0;w<to.length;++w){if(to[w].value==modelL[f]['i']){to[w].selected=true;w=to.length;}}
-	document.getElementById("crn").value=modelL[f]['n'];
+	document.getElementById("cricon").src='uno/plugins/model/unomodel/icons/'+((typeof modelL[f]['i']!=='undefined')?modelL[f]['i']:0)+'.png';
+	document.getElementById("cri").value=((typeof modelL[f]['i']!=='undefined')?modelL[f]['i']:0);
+	document.getElementById("crr").value=((typeof modelL[f]['r']!=='undefined')?modelL[f]['r']:0);
+	document.getElementById("crn").value=((typeof modelL[f]['n']!=='undefined')?modelL[f]['n']:'');
 }
 function f_add_model(){
 	var cr1,cr2,cr3,a,s=document.getElementById("crView").getElementsByTagName('DIV'),t=s.length+1+'',u=-1;
@@ -144,8 +146,9 @@ function f_delCR_model(f){
 	});
 }
 function f_saveCR_model(){
-	let cr=[],s=document.getElementById("crView").getElementsByTagName('DIV'),v,ico;
+	let cr=[],s=document.getElementById("crView").getElementsByTagName('DIV'),v,ico,res,nam;
 	ico=document.getElementById("cri").options[document.getElementById("cri").selectedIndex].value;
+	res=document.getElementById("crr").options[document.getElementById("crr").selectedIndex].value;
 	nam=document.getElementById("crn").value;
 	for(v=0;v<s.length;++v){
 		cr[v]=s[v].title; // grid
@@ -156,6 +159,7 @@ function f_saveCR_model(){
 		x.set('unox',Unox);
 		x.set('cr',JSON.stringify(cr));
 		x.set('ico',ico);
+		x.set('res',res);
 		x.set('nam',nam);
 		fetch('uno/plugins/model/model.php',{method:'post',body:x})
 		.then(r=>r.text())
